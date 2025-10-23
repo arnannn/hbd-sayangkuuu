@@ -139,7 +139,11 @@
   <button onclick="playMusic()">Putar Musik 🎵</button>
 </div>
 
-<audio id="bg-music" src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_02157d3b0f.mp3?filename=romantic-piano-ambient-122143.mp3" loop></audio>
+<!-- 🎶 Musik Romantis -->
+<audio id="bg-music" preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2024/05/08/audio_09b3dbcf88.mp3?filename=soft-piano-romantic-218568.mp3" type="audio/mpeg">
+  Browser kamu tidak mendukung audio.
+</audio>
 
 <script>
   // animasi hati terbang
@@ -151,7 +155,6 @@
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 5000);
   }
-
   setInterval(createHeart, 400);
 
   // animasi bintang berkilau
@@ -163,12 +166,17 @@
     document.body.appendChild(sparkle);
     setTimeout(() => sparkle.remove(), 3000);
   }
-
   setInterval(createSparkle, 250);
 
-  // musik romantis
+  // musik romantis fix
   function playMusic() {
-    document.getElementById("bg-music").play();
+    const audio = document.getElementById("bg-music");
+    audio.play().then(() => {
+      alert("💜 Musik romantis sedang diputar... Nikmati momen indahnya 💫");
+    }).catch(error => {
+      alert("⚠️ Klik tombol 'Putar Musik' lagi, browser memerlukan izin untuk memutar lagu.");
+      console.error("Gagal memutar audio:", error);
+    });
   }
 </script>
 
